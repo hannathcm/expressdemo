@@ -6,7 +6,11 @@ const { Server } = require("socket.io");
 const port = process.env.PORT || 3000
 app.use(cors());
 
-const server = http.createServer(app);
+const server = http.createServer((req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/html');
+    res.end('<h1>Hello World</h1>');
+});
 
 const io = new Server(server, {
     cors: {
